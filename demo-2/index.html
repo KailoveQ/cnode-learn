@@ -24,8 +24,9 @@
         new Vue({
             data: {
                 data: new Date(),
-                kai: 0
-
+                kai: 0,
+                banana: '<span style="color:yellow;">香蕉</span>',
+                className: "zhu"
             },
             template: `
                 <div>
@@ -33,8 +34,14 @@
                     {{data}}
                     </br>
                     处理后的数据：
-                    // {{data | formatData}}
-                    {{name}}
+                    // {{data | formatData}} </br>
+                    {{kai}} </br>
+                    v-html 指令</br>
+                    {{banana}} </br>
+                    <span v-text="banana"></span></br>
+                    <span v-html="banana"></span></br>
+                    v-bind 指令</br>
+                    <div v-bind:class=className></div></br>
                 </div>
             `,
             filters: {
