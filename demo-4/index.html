@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定class</title>
+    <style>
+        .divStyle {
+            border: 10px solid red;
+            width: 60px;
+            height: 60px;
+        }
+
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        下面演示绑定class,当点击按钮时，切换背景图片</br>
+        <div :class="{divStyle:isActive}">wwww </div>
+        <button v-on:click="changeBorder">点我显示border</button>
+        <div v-html="html"></div>
+
+        <button v-on:click="changeBg">点我切换图片</button>
+    </div>
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                isActive: false,
+                html: '<img src="https://ftp.bmp.ovh/imgs/2021/01/2507bfc4822e1afd.png" alt="">'
+            },
+            methods: {
+                changeBg() {
+                    this.html = '<img src="https://ftp.bmp.ovh/imgs/2021/01/c50467d22652080b.png" alt="">'
+                },
+                changeBorder() {
+                    this.isActive = !this.isActive
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

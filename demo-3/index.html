@@ -4,39 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>计算属性</title>
+    <title>绑定class</title>
 </head>
 
 <body>
-    <div id="app">
-        原字符串{{n}}</br>
-        不使用计算属性 {{n.split(',').reverse().join(',')}}</br>
-        使用计算属性实现反转{{fan}}</br>
-
-        使用get 和set 实现名字的改变{{fan}}</br>
-        使用watch 实现名字的改变{{ this_name() }}</br>
+    <div id="app4">
 
     </div>
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
     <script>
         const vm = new Vue({
-            el: "#app",
+            el: "#app4",
             data: {
-                n: "123, 456, 789",
-                firstName: "zhang",
-                lastName: "sanfeng"
-            },
-            computed: {
-                fan: {
-                    get() {
-                        return this.n.split(',').reverse().join(',')
-                    }
-                }
-            },
-            methods: {
-                this_name() {
-                    return this.firstName + ' ' + this.lastName
-                }
             }
         })
 
