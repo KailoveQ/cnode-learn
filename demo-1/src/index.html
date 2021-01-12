@@ -21,7 +21,8 @@
             return value < 10 ? '0' + value : value
         }
 
-        new Vue({
+        const app = new Vue({
+            el: "#app",
             data: {
                 data: new Date(),
                 kai: 0
@@ -66,7 +67,8 @@
                     clearInterval(this.timer)
                 }
             }
-        }).$mount("#app");
+        })
+        console.log(app.$el)
     </script>
 
 </body>
