@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定class</title>
+    <style>
+        img {
+            max-width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        v-if 的实例用法：
+        需求，点击按钮，实现图片的切换
+        <div v-if="type==='P1'">
+            <img src="https://ftp.bmp.ovh/imgs/2021/01/2507bfc4822e1afd.png" alt="">
+        </div>
+        <div v-else="type==='P2'">
+            <img src="https://ftp.bmp.ovh/imgs/2021/01/c50467d22652080b.png" alt="">
+        </div>
+        <button v-on:click="changeType">点击切换背景</button>
+    </div>
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                type: 'P1'
+
+            },
+            methods: {
+                changeType() {
+                    this.type = (this.type === 'P1' ? 'P2' : 'P1')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
