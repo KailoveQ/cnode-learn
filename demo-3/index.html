@@ -11,7 +11,11 @@
     <div id="app">
         原字符串{{n}}</br>
         不使用计算属性 {{n.split(',').reverse().join(',')}}</br>
-        使用计算属性实现反转{{fan}}
+        使用计算属性实现反转{{fan}}</br>
+
+        使用get 和set 实现名字的改变{{fan}}</br>
+        使用watch 实现名字的改变{{ this_name() }}</br>
+
     </div>
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
     <script>
@@ -19,10 +23,19 @@
             el: "#app",
             data: {
                 n: "123, 456, 789",
+                firstName: "zhang",
+                lastName: "sanfeng"
             },
             computed: {
-                fan: function () {
-                    return this.n.split(',').reverse().join(',')
+                fan: {
+                    get() {
+                        return this.n.split(',').reverse().join(',')
+                    }
+                }
+            },
+            methods: {
+                this_name() {
+                    return this.firstName + ' ' + this.lastName
                 }
             }
         })
