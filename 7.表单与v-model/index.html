@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <div id="app">
+        v-model 的用法 <br>
+        一.input和textarea里的用法：<br>
+        <input type="text" v-model="value">
+        {{value}} </br>
+        </br>
+        <textarea name="" id="" cols="30" rows="2" v-model="msg">我的多行文本的初始化值</textarea>
+        {{msg}} </br>
+        <hr>
+        二.单选框</br>
+        1.单个单选框：<input type="radio" name="" v-bind:checked="oneradio"> <br>
+        1.多个单选框：v-model 绑定的值是 所选的value值 <br>
+        猫蛋<input type="radio" name="checks" value="猫蛋" v-model="checkname"> <br>
+        狗蛋<input type="radio" name="checks" value="狗蛋" v-model="checkname"> <br>
+        翠花<input type="radio" name="checks" value="翠花" v-model="checkname"> <br>
+        现在选中的是-------{{checkname}}
+        <hr>
+        三.复选框: <br>
+        单个复选框--用v-bind ：<input type="checkbox" v-bind:checked="oneradio"> <br>
+        单个复选框--用v-model ：<input type="checkbox" v-model:checked="oneradio"> <br>
+        多个复选框--<br>
+        猫蛋<input type="checkbox" value="猫蛋" v-model="checks"> <br>
+        狗蛋<input type="checkbox" value="狗蛋" v-model="checks"> <br>
+        翠花<input type="checkbox" value="翠花" v-model="checks"> <br>
+        现在选中的是-------{{checks}}
+        <hr>
+        四.下拉框: <br>
+        单选的下拉框：<select v-model="selected">
+            <option value="猫蛋">猫蛋</option>
+            <option value="狗蛋">狗蛋</option>
+            <option value="翠花">翠花</option>
+        </select>
+        现在选中的是-------{{selected}}
+        <br>
+        <br>
+        <br>
+        <br>
+        多选的下拉框：<select v-model="selectedmul" multiple>
+            <option value="猫蛋">猫蛋</option>
+            <option value="狗蛋">狗蛋</option>
+            <option value="翠花">翠花</option>
+        </select>
+        现在选中的是-------{{selectedmul}}
+
+    </div>
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                value: '',
+                msg: '',
+                oneradio: true,
+                checkname: "猫蛋",
+                checks: [],
+                selected: '猫蛋',
+                selectedmul: []
+            },
+            methods: {
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>
