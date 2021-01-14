@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>组件的props 的两种应用场景</h1>
+    <div id="app">
+        <input type="text" v-model="width">
+        <components-a :width="width"></components-a>
+    </div>
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                width: '10'
+            },
+            components: {
+                'components-a': {
+                    props: ['width'],
+                    template: `<div :style='style'></div>`,
+                    computed: {
+                        style() {
+                            return {
+                                width: this.width + 'px',
+                                background: 'red',
+                                height: '20px'
+
+                            }
+                        }
+                    }
+                },
+            }
+        })
+
+    </script>
+</body>
+
+</html>

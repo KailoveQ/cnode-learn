@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>组件的的通信</h1>
+    <h3>在父组件里向子组件传消息</h3>
+    <div id="app" style="border: 2px solid red; height: 460px;">
+        <h5 style="text-align: center;">我是父组件</h5>
+        <components-child msg='我是父组件传来的'></components-child>
+        <h3>使用V-bind 进行数据的动态绑定：把input中的parentmsg 传给 子组件</h3>
+        <input type="text" v-model="parentMsg">
+        <components-bind v-bind:msg="parentMsg"></components-bind>
+    </div>
+
+
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+
+        Vue.component('my-component', {
+            template: '<div>我是一个全局组件</div>'
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                parentMsg: '今天针不戳呢！'
+            },
+            components: {
+                'components-child': {
+                    props: ['msg'],
+                    template: `<div style="border: 2px solid red;">{{msg}}</div>`
+                },
+                'components-bind': {
+                    props: ['msg'],
+                    template: `<div style="border: 2px solid red;">{{msg}}</div>`
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
