@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>组件的的通信</h1>
+    <h3>子组件互传信息</h3>
+    <div id="app" style="border: 2px solid red; height: 460px;">
+        <my-acomponent ref='a'></my-acomponent>
+        <my-bcomponent ref='b'></my-bcomponent>
+        <hr>
+        <child-component ref='c'></child-component> ---{{msg}}
+        <hr>
+        <button @click="getChildData">我是父组件按钮，我要拿到子组件的内容</button> ---{{formhchild}}
+    </div>
+
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                //这是一个bus中介
+                bus: new Vue(),
+                msg: '数据还未修改',
+                formhchild: '还未拿到数据'
+            },
+            methods: {
+                getChildData() {
+                    //用来拿到子组件中的内容 ，VUe.js 给我们提高了一个ref 属性
+                    this.formhchild = this.$refs.c.msg;
+                }
+            },
+            components: {
+                "my-acomponent": {
+                    template: `<div>  <button @click="handle">点击我向B组件传递数据</button>  </div>`,
+                    data() {
+                        return {
+                            aaa: '我是一个来自A组件的data',
+                            msg: '我是A中的msg'
+                        }
+                    },
+                    methods: {
+                        handle() {
+                            this.$root.bus.$emit('lala', this.aaa)
+                        }
+                    }
+
+                },
+                "my-bcomponent": {
+                    template: `<div>我是组件B</div>`,
+                    data() {
+                        return {
+                            aaa: '我是一个来自B组件的data',
+                            msg: '我是B中的msg'
+                        }
+                    },
+                    created() {
+                        //A组件在实例创建的时候就监听事件--lalal 事件
+                        this.$root.bus.$on('lala', function (value) {
+                            alert(value)
+                        })
+                    }
+                },
+                "child-component": {
+                    template: `<button @click="setFatherData">通过点击我修改父亲的数据</button> `,
+                    data() {
+                        return {
+                            msg: '我是C中的msg'
+                        }
+                    },
+                    methods: {
+                        setFatherData() {
+                            this.$parent.msg = '数据已经修改了'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

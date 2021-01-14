@@ -16,7 +16,31 @@
 
     <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
     <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
 
+            },
+            components: {
+                "my-acomponent": {
+                    template: `<div>我是组件A</div>`,
+                    data() {
+                        return {
+
+                        }
+                    }
+
+                },
+                "my-bcomponent": {
+                    template: `<div>我是组件B</div>`,
+                    data() {
+                        return {
+
+                        }
+                    }
+                }
+            }
+        })
     </script>
 </body>
 
