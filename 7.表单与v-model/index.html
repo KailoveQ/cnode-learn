@@ -9,15 +9,15 @@
 
 <body>
     <div id="app">
-        v-model 的用法 <br>
-        一.input和textarea里的用法：<br>
+        <h1>v-model 的用法 </h1>
+        <h3>一.input和textarea里的用法：</h3>
         <input type="text" v-model="value">
         {{value}} </br>
         </br>
         <textarea name="" id="" cols="30" rows="2" v-model="msg">我的多行文本的初始化值</textarea>
         {{msg}} </br>
         <hr>
-        二.单选框</br>
+        <h3>二.单选框</h3>
         1.单个单选框：<input type="radio" name="" v-bind:checked="oneradio"> <br>
         1.多个单选框：v-model 绑定的值是 所选的value值 <br>
         猫蛋<input type="radio" name="checks" value="猫蛋" v-model="checkname"> <br>
@@ -25,7 +25,7 @@
         翠花<input type="radio" name="checks" value="翠花" v-model="checkname"> <br>
         现在选中的是-------{{checkname}}
         <hr>
-        三.复选框: <br>
+        <h3>三.复选框:</h3>
         单个复选框--用v-bind ：<input type="checkbox" v-bind:checked="oneradio"> <br>
         单个复选框--用v-model ：<input type="checkbox" v-model:checked="oneradio"> <br>
         多个复选框--<br>
@@ -34,7 +34,7 @@
         翠花<input type="checkbox" value="翠花" v-model="checks"> <br>
         现在选中的是-------{{checks}}
         <hr>
-        四.下拉框: <br>
+        <h3>四.下拉框:</h3>
         单选的下拉框：<select v-model="selected">
             <option value="猫蛋">猫蛋</option>
             <option value="狗蛋">狗蛋</option>
@@ -51,7 +51,14 @@
             <option value="翠花">翠花</option>
         </select>
         现在选中的是-------{{selectedmul}}
-
+        <h3>总结一下</h1>
+            如果是单选，初始化最好给定的是字符串，因为v-model 此时绑定的是静态的字符串或者布尔值
+            <br>
+            如果是多选，初始化最好给定一个数组
+            <hr style="color: rgb(251, 16, 16);">
+            绑定值：<br>
+            三.单选按钮：
+            <input type="radio">
     </div>
 
     <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>

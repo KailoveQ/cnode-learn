@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>组件的的用法</h1>
+    <div id="app" style="border: 2px solid red;">
+        <my-component></my-component>
+        <components-a></components-a>
+        <h3>html 标签受限：此时使用 is 属性</h3>
+        table 中只能有 tr,td,tbody 这些元素
+        <table>
+            <!-- <my-component></my-component> -->
+            <tbody is='my-component'></tbody>
+        </table>
+
+    </div>
+
+    <div id="bpp" style="border: 2px solid rgb(16, 255, 156); margin-top: 5px;">
+        <my-component></my-component>
+    </div>
+    <div id="vc" style="border: 2px solid rgb(235, 22, 153); margin-top: 5px;">
+        <h3>组件中的data必须是一个方法</h3>
+        <components-vc></components-vc>
+    </div>
+
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        // Vue.component(tag,{
+        //     telement:'<div></div>'
+        // })
+        Vue.component('my-component', {
+            template: '<div>我是一个全局组件</div>'
+        })
+        const vm = new Vue({
+            el: '#app',
+            components: {
+                'components-a': {
+                    template: `<div>我是app1 内的局部组件</div>`
+                }
+            }
+        })
+        const vn = new Vue({
+            el: '#bpp'
+        })
+        const vc = new Vue({
+            el: '#vc',
+            components: {
+                'components-vc': {
+                    data() {
+                        return {
+                            count: 0
+                        }
+                    },
+                    template: `<button @click="count++">{{count}}</button>`
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
