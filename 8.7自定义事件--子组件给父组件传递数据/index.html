@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>组件的的通信</h1>
+    <h3>子组件给父组件传递数据</h3>
+    <div id="app" style="border: 2px solid rgb(34, 33, 33); ">
+        您现在的银行卡余额是：{{total}}
+        <son-component @change="handleTotal"></son-component>
+    </div>
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        Vue.component('son-component', {
+            template: `
+                <div style="margin-top:6px ">
+                    <button @click="increase"> +100</button>
+                    <button @click="reduce"> -100</button>
+                </div>`,
+
+            data() {
+                return {
+                    count: 2000
+                }
+            },
+            methods: {
+                increase() {
+                    this.count += 100
+                    this.$emit('change', this.count)
+                },
+                reduce() {
+                    this.count -= 100
+                    this.$emit('change', this.count)
+                }
+            }
+        })
+        const app = new Vue({
+            el: '#app',
+            data: {
+                total: 2000
+            },
+            methods: {
+                handleTotal(value) {
+                    // 此处的行参vlaue 就是传递过来的数据
+                    this.total = value
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
