@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>进阶属性 render() </h1>
+    <h3> render函数的第一个参数 </h3>
+    <div id="app" style="border: 2px solid red; height: 460px;">
+        <child></child>
+    </div>
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        //第三个参数是可选的 可以是 String|| Array 代表子节点
+        Vue.component('child', {
+            render(createElement) {
+                return createElement('div', [
+                    createElement('h1', '我是h1 标题'),
+                    createElement('h5', '我是h5 标题'),
+                ])
+            }
+        })
+
+        const app = new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>

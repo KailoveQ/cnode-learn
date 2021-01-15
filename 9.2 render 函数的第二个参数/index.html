@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>进阶属性 render() </h1>
+    <h3> render函数的第一个参数 </h3>
+    <div id="app" style="border: 2px solid red; height: 460px;">
+        <child></child>
+    </div>
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        //第二个参数可选，第二个参数是数据对象---只能说Object
+        Vue.component('child', {
+            render(createElement) {
+                return createElement({ template: `<div>我是小肥猪</div>` }, {
+                    'class': {
+                        foo: true,
+                        baz: false
+                    },
+                    style: {
+                        color: 'red',
+                        fontSize: '66px'
+                    },
+                    //正常的html 特性
+                    attrs: {
+                        id: 'foo',
+                        src: 'http://baidu.com'
+                    },
+                    //用来写原生的Dom属性的
+                    domProps: {
+                        innerHTML: "<span style='color:blue;font-size:50px;'>小猪配祺</span>"
+                    }
+                })
+            }
+        })
+
+        const app = new Vue({
+            el: '#app',
+        })
+    </script>
+</body>
+
+</html>
