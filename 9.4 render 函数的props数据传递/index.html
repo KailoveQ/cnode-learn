@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>进阶属性 render() </h1>
+    <h3> render函数的props </h3>
+    <h3>需求：点击按钮实现切换图片</h3>
+    <div id="app" style="border: 2px solid rgb(22, 21, 21); height: 460px;">
+        <button @click='change'>点我切换图片</button>
+        <child :show='show'></child>
+    </div>
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        //第三个参数是可选的 可以是 String|| Array 代表子节点
+        Vue.component('child', {
+            props: ['show'],
+            render(createElement) {
+                var imgsrc
+                if (this.show) {
+                    imgsrc = "https://ftp.bmp.ovh/imgs/2021/01/2507bfc4822e1afd.png"
+                } else {
+                    imgsrc = "https://ftp.bmp.ovh/imgs/2021/01/c50467d22652080b.png"
+                }
+                return createElement('img', {
+                    attrs: {
+                        src: imgsrc
+                    },
+                    style: {
+                        width: '600px'
+                    }
+                })
+            }
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                show: false
+            },
+            methods: {
+                change() {
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
