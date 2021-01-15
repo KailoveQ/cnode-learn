@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单与v-model</title>
+</head>
+
+<body>
+    <h1>动态组件的使用方法</h1>
+    <h3>需求：点击按钮实现不同组件的切换</h3>
+    <div id="app" style="border: 2px solid red; height: 460px;">
+        <components :is="thisView"></components>
+        <button @click="handleView('A')">第一句</button>
+        <button @click="handleView('B')">第二句</button>
+        <button @click="handleView('C')">第三句</button>
+        <button @click="handleView('D')">第四句</button>
+    </div>
+
+    <script src=" https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                thisView: 'compA'
+            },
+            methods: {
+                handleView(tag) {
+                    console.log(this.thisView)
+                    this.thisView = 'comp' + tag
+                    console.log(this.thisView)
+                }
+            },
+            components: {
+                "compA": {
+                    template: `<div>我是组件A</div>`,
+                },
+                "compB": {
+                    template: `<div>我是组件B</div>`,
+                },
+                "compC": {
+                    template: `<div>我是组件C</div>`,
+                },
+                "compD": {
+                    template: `<div>我是组件D</div>`,
+                },
+            }
+        })
+    </script>
+</body>
+
+</html>
